@@ -1,7 +1,10 @@
 <p id="notice"><%= notice %></p>
 
 <h1>Tweets</h1>
-<%= render "tweets/form", tweet: @tweet, remote: true %>
+
+<%= turbo_frame_tag "tweet_form" do %>
+  <%= render "tweets/form", tweet: @tweet %>
+<% end %>
 
 <%= turbo_stream_from "tweets" %>
 <%# 告訴 javascript 我要用 action cable 串流 id 為 'tweets' 的頻道 %>
