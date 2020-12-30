@@ -1,6 +1,11 @@
 <p id="notice"><%= notice %></p>
 
 <h1>Tweets</h1>
-<%= render "tweets/form", tweet: @tweet %>
+<%= render "tweets/form", tweet: @tweet, remote: true %>
 
-<%= render @tweets %>
+<%= turbo_stream_from "tweets" %>
+<%# 告訴 javascript 我要用 action cable 串流 id 為 'tweets' 的頻道 %>
+<%# 串流成功後，即可正確的觸發 prepend / apend 效果 %>
+<%= turbo_frame_tag "tweets" do %>
+  <%= render @tweets %>
+<% end %>

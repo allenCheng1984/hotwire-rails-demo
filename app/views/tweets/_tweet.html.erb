@@ -1,3 +1,5 @@
+<%# 要掛載 turbo_frame_tag 才會正確觸發 update / destroy 的更新效果 %>
+<%= turbo_frame_tag dom_id(tweet) do %>
   <div class="card card-body">
     <div><%= tweet.body %></div>
 
@@ -8,3 +10,4 @@
       <%= link_to "Edit", edit_tweet_path(tweet) %>
     </div>
   </div>
+<% end %>
